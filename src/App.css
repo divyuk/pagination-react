@@ -8,6 +8,7 @@
 }
 
 .products__single {
+  margin: 20px;
   height: 250px;
   list-style: none;
   padding: 20px;
@@ -35,4 +36,8 @@
   padding: 15px 20px;
   border: 1px solid gray;
   cursor: pointer;
+}
+
+.pagination__selected {
+  background-color: rgb(220, 220, 220);
 }

@@ -5,28 +5,44 @@ import "./App.css";
 function App() {
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
+
+  //! to make this backend driven and fetch only required number of products, we can have
+  const [totalPages, setTotalPages] = useState(0);
+
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("https://dummyjson.com/products");
+      const res = await fetch(
+        `https://dummyjson.com/products?limit=10&skip=${page * 10 - 10}`
+      );
       const data = await res.json();
-      if (data && data.products) setProducts(data.products);
+      if (data && data.products) {
+        setProducts(data.products);
+        setTotalPages(Math.floor(data.total / 10));
+      }
     };
     fetchData();
-  }, []);
+  }, [page]);
 
-  console.log(products);
+  console.log(totalPages);
+
+  const selectPageHandler = (selectedPage) => {
+    if (
+      selectedPage >= 1 &&
+      selectedPage <= totalPages &&
+      selectedPage !== page
+    )
+      setPage(selectedPage);
+  };
   return (
     <div>
       {products.length > 0 && (
         <div className="products">
-          {products.slice(page * 10 - 10, page * 10).map((product) => {
+          {products.map((product) => {
             return (
-              <div className="products__single" key={product.id}>
-                <span>
-                  <img src={product.thumbnail} alt={product.title} />
-                  <span>{product.title}</span>
-                </span>
-              </div>
+              <span className="products__single" key={product.id}>
+                <img src={product.thumbnail} alt={product.title} />
+                <span>{product.title}</span>
+              </span>
             );
           })}
         </div>
@@ -34,11 +50,27 @@ function App() {
 
       {products.length > 0 && (
         <div className="pagination">
-          <span>◀</span>
-          {[...Array(products.length / 10)].map((_, i) => (
-            <span key={i}>{i + 1}</span>
+          <span
+            disabled={page === 1}
+            onClick={() => selectPageHandler(page - 1)}
+          >
+            ◀
+          </span>
+          {[...Array(totalPages)].map((_, i) => (
+            <span
+              className={page === i + 1 ? "pagination__selected" : ""}
+              onClick={() => selectPageHandler(i + 1)}
+              key={i}
+            >
+              {i + 1}
+            </span>
           ))}
-          <span>▶</span>
+          <span
+            disabled={page === totalPages}
+            onClick={() => selectPageHandler(page + 1)}
+          >
+            ▶
+          </span>
         </div>
       )}
     </div>
