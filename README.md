@@ -4,7 +4,7 @@ Pagination in reactjs
 
 ![image](./public/show.png)
 
-# Design and Implementation
+# Design and Implementation of the app
 
 1. We have state for products array.
 2. We have page state to show page
