@@ -13,7 +13,7 @@ Pagination in reactjs
 
 `https://dummyjson.com/products?limit=10&skip=${page * 10 - 10}`
 
-The url display 10 items and skips the page, for example page = 2 , then 1st 10 items will be skipped.
+The url display 10 items and skips the page, for example page = 2 , then 1st 10 items will be skipped. This shows the pagination.
 
 ## Logic
 
