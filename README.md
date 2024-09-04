@@ -2,6 +2,8 @@
 
 Pagination in reactjs
 
+To Load the data in pages
+
 ![image](./public/show.png)
 
 # Design and Implementation of the app
