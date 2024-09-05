@@ -15,7 +15,7 @@ Pagination in reactjs
 
 The url display 10 items and skips the page, for example page = 2 , then 1st 10 items will be skipped.
 
-## Logic
+## Logic of the main design
 
 ```
  {products.length > 0 && (
