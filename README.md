@@ -17,7 +17,7 @@ To Load the data in pages
 
 The url display 10 items and skips the page, for example page = 2 , then 1st 10 items will be skipped. This shows the pagination.
 
-## Logic of the main design of the app
+## Main Logic of the main design of the app
 
 ```
  {products.length > 0 && (
